@@ -8,6 +8,8 @@ int arr[1000001];
 int main() {
 
     cin >> n >> k;
+    
+    if (k > 500000) k = 500000;
 
     for (int i = 0; i < n; i++) {
         int num, pos;
