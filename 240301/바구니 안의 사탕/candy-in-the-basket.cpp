@@ -1,39 +1,50 @@
 #include <iostream>
 #include <algorithm>
+
+#define MAX_N 100000
+
 using namespace std;
 
+struct Candy {
+    int x;
+    int cnt;
+
+    bool operator<(const Candy& comp) const {
+        return x < comp.x;
+    }
+} candies[MAX_N];
+
 int n, k;
-int arr[1000001];
 
 int main() {
+    // freopen("input.txt", "r", stdin);
 
     cin >> n >> k;
-    
-    if (k > 500000) k = 500000;
 
     for (int i = 0; i < n; i++) {
-        int num, pos;
-        cin >> num >> pos;
-        arr[pos] += num;
+        cin >> candies[i].cnt >> candies[i].x;
     }
 
-    int c = k;
+    sort(candies, candies + n);
+    
+    int ans = 0;
+    int j = 0;
     int sum = 0;
-    int i = 0;
-    int maxi = 0;
-
-    for (int i = 0; i <= c + k; i++) {
-        sum += arr[i];
-    }
-    maxi = sum;
-
-    for (int j = c + k + 1; j <= 1000000; j++) {
-        sum += arr[j] - arr[i];
-        maxi = max(maxi, sum);
-        i++;
+    
+    for (int i = 0; i < n; i++) {
+        while (j < n && candies[j].x - candies[i].x <= 2 * k) {
+            sum += candies[j].cnt;
+            j++;
+        }
+        ans = max(ans, sum);
+        sum -= candies[i].cnt;
     }
 
-    cout << maxi;
-
-    return 0;
+    cout << ans << endl;
 }
+
+// 1 5
+// 2 2
+// 7 4
+// 15 10
+// 22 12
