@@ -1,7 +1,7 @@
 #include <iostream>
-#include <cstdlib>
 #include <algorithm>
 #include <climits>
+#include <set>
 
 #define MAX_N 100000
 
@@ -14,35 +14,38 @@ struct Coord {
     int y;
 
     bool operator<(const Coord& comp) const {
-        return x < comp.x;
+        return y < comp.y;
     }
 } arr[MAX_N];
 
+struct Compare_x {
+    bool operator()(const Coord& t, const Coord& v) const {
+        return t.x < v.x;
+    }
+};
+
+set<Coord> range;
+
 int main() {
+    // freopen("input.txt", "r", stdin);
+
     cin >> N >> D;
     for (int i = 0; i < N; i++) {
         cin >> arr[i].x >> arr[i].y;
     }
-    sort (arr, arr + N);
+    sort (arr, arr + N, Compare_x());
 
     int j = 0;
     int ans = INT_MAX;
-    int mini = arr[0].y;
-    int maxi = arr[0].y;
 
     for (int i = 0; i < N - 1; i++) {
-        if (i == j) {
-            mini = arr[i].y;
-            maxi = arr[i].y;
-        }
-        while (j < N && abs(maxi - mini) < D) {
+        range.insert(arr[i]);
+        while (j < N && abs(range.begin()->y - range.rbegin()->y) < D) {
             j++;
-            mini = min(mini, arr[j].y);
-            maxi = max(maxi, arr[j].y);
+            range.insert(arr[j]);
         }
         if (j == N) break;
-        if (arr[i].y == mini) mini = maxi;
-        if (arr[i].y == maxi) maxi = mini;
+        range.erase(range.find(arr[i]));
         ans = min(ans, arr[j].x - arr[i].x);
     }
 
