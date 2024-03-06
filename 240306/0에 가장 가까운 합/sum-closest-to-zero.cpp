@@ -25,6 +25,7 @@ int main() {
         while (j > 1) {
             if (abs(arr[i] + arr[j]) < ans)
                 ans = abs(arr[i] + arr[j]);
+            else break;
             if (abs(arr[i] + arr[j - 1]) < ans)
                 j--;
         }
