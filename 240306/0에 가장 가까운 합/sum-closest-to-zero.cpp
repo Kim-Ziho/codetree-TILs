@@ -26,7 +26,6 @@ int main() {
             ans = abs(arr[i] + arr[j]);
             j--;
         }
-        j++;
     }
 
     cout << ans << endl;
