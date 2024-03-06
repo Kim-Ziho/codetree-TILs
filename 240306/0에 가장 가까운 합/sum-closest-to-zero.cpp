@@ -22,7 +22,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         if (i >= j) break;
-        while (j > 1) {
+        while (j > 0) {
             if (abs(arr[i] + arr[j]) < ans)
                 ans = abs(arr[i] + arr[j]);
             else break;
