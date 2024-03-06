@@ -30,17 +30,18 @@ int main() {
     int mini = arr[0].y;
     int maxi = arr[0].y;
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N - 1; i++) {
         if (i == j) {
             mini = arr[i].y;
             maxi = arr[i].y;
         }
-        while (j < N - 1 && abs(maxi - mini) < D) {
+        while (j < N && abs(maxi - mini) < D) {
             j++;
             mini = min(mini, arr[j].y);
             maxi = max(maxi, arr[j].y);
         }
-        if (i != j) ans = min(ans, arr[j].x - arr[i].x);
+        if (j == N) break;
+        ans = min(ans, arr[j].x - arr[i].x);
     }
 
     if (ans == INT_MAX) cout << -1 << endl;
