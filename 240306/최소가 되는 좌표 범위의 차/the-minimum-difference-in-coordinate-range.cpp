@@ -41,6 +41,8 @@ int main() {
             maxi = max(maxi, arr[j].y);
         }
         if (j == N) break;
+        if (arr[i].y == mini) mini = maxi;
+        if (arr[i].y == maxi) maxi = mini;
         ans = min(ans, arr[j].x - arr[i].x);
     }
 
