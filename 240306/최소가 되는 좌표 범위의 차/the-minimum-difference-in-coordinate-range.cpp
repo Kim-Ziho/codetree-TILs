@@ -45,8 +45,8 @@ int main() {
             range.insert(arr[j]);
         }
         if (j == N) break;
-        range.erase(range.find(arr[i]));
         ans = min(ans, arr[j].x - arr[i].x);
+        range.erase(range.find(arr[i]));
     }
 
     if (ans == INT_MAX) cout << -1 << endl;
