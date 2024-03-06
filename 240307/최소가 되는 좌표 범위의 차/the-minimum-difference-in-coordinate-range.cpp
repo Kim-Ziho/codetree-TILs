@@ -53,7 +53,7 @@ int main() {
             range.insert(arr[j]);
             j++;
         }
-        if (get_min() - get_max()) break;
+        if (get_min() - get_max() < D) break;
         ans = min(ans, arr[j].x - arr[i].x);
         range.erase(range.find(arr[i]));
     }
