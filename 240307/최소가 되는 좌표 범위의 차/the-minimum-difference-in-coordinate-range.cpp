@@ -49,11 +49,11 @@ int main() {
     int ans = INT_MAX;
 
     for (int i = 0; i < N - 1; i++) {
-        while (j < N && abs(get_min() - get_max()) < D) {
+        while (j < N && get_max() - get_min() < D) {
             range.insert(arr[j]);
             j++;
         }
-        if (get_min() - get_max() < D) break;
+        if (get_max() - get_min() < D) break;
         ans = min(ans, arr[j].x - arr[i].x);
         range.erase(range.find(arr[i]));
     }
