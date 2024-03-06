@@ -21,7 +21,7 @@ int main() {
     int ans = INT_MAX;
 
     for (int i = 0; i < n; i++) {
-        if (i <= j) break;
+        if (i >= j) break;
         while (j > 1) {
             if (abs(arr[i] + arr[j]) < ans)
                 ans = abs(arr[i] + arr[j]);
