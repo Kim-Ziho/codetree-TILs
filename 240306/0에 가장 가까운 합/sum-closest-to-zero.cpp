@@ -22,7 +22,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         if (i < j) {
-            ans = min(ans, arr[i] + arr[j]);
+            ans = min(ans, abs(arr[i] + arr[j]));
         }
         while (i < j && arr[i] + arr[j] >= 0) {
             ans = min(ans, arr[i] + arr[j]);
