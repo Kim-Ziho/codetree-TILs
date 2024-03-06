@@ -21,13 +21,13 @@ int main() {
     int ans = INT_MAX;
 
     for (int i = 0; i < n; i++) {
-        if (i >= j) break;
-        int tmp = j;
-        while (j > 0 && abs(arr[i] + arr[j]) < ans) {
-            ans = abs(arr[i] + arr[j]);
+        if (i < j) {
+            ans = min(ans, arr[i] + arr[j]);
+        }
+        while (i < j && arr[i] + arr[j] >= 0) {
+            ans = min(ans, arr[i] + arr[j]);
             j--;
         }
-        if (j < tmp) j++;
     }
 
     cout << ans << endl;
