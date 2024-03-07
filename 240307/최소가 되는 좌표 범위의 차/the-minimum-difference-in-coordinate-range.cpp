@@ -50,8 +50,8 @@ int main() {
 
     for (int i = 1; i <= N; i++) {
         while (j < N  && get_max() - get_min() < D) {
+            range.insert(arr[j + 1]);
             j++;
-            range.insert(arr[j]);
         }
         if (get_max() - get_min() < D) break;
         ans = min(ans, arr[j].x - arr[i].x);
