@@ -1,74 +1,68 @@
 #include <iostream>
 #include <algorithm>
-#include <climits>
 #include <set>
+#include <climits>
 
 #define MAX_N 100000
 
 using namespace std;
 
-int N, D;
-
-struct Coord {
-    int x;
-    int y;
-
-    bool operator<(const Coord& comp) const {
-        return y < comp.y;
-    }
-} arr[MAX_N + 1];
-
-struct Compare_x {
-    bool operator()(const Coord& t, const Coord& v) const {
-        if (t.x == v.x) return t.y < v.y;
-        return t.x < v.x;
-    }
-};
-
-set<Coord> range;
+// 변수 선언
+int n, d;
+pair<int, int> point[MAX_N + 1];
+set<pair<int, int> > point_count;
 
 int get_min() {
-    if (range.empty()) return 0;
-    return range.begin()->y;
+    if(point_count.empty()) return 0;
+    return point_count.begin()->first; 
 }
 
 int get_max() {
-    if (range.empty()) return 0;
-    return range.rbegin()->y;
+    if(point_count.empty()) return 0;
+    return point_count.rbegin()->first;
 }
 
 int main() {
-    // freopen("input.txt", "r", stdin);
-
-    cin >> N >> D;
-    for (int i = 1; i <= N; i++) {
-        cin >> arr[i].x >> arr[i].y;
+    // 입력:
+    cin >> n >> d;
+    for(int i = 1; i <= n; i++) {
+        cin >> point[i].first >> point[i].second;
     }
-    sort (arr + 1, arr + N + 1, Compare_x());
 
-    int j = 0;
+    sort(point + 1, point + n + 1);
+
+    // 가능한 구간 중 최소 크기를 구합니다.
     int ans = INT_MAX;
 
-    for (int i = 1; i < N; i++) {
-        while (j < N  && get_max() - get_min() < D) {
+    // 구간을 잡아봅니다.
+    int j = 0;
+    for(int i = 1; i <= n; i++) {
+        // y좌표 차가 d가 되기 전까지 계속 진행합니다.
+        while(j + 1 <= n && get_max() - get_min() < d) {
+            point_count.insert({point[j + 1].second, point[j + 1].first});
             j++;
-            range.insert(arr[j]);
         }
-        if (get_max() - get_min() < D) break;
-        ans = min(ans, arr[j].x - arr[i].x);
-        range.erase(range.find(arr[i]));
+
+        // 만약 최대한 이동했는데도
+        // y좌표 차가 d가 되지 못했다면
+        // 탐색을 종료합니다.
+        if(get_max() - get_min() < d)
+            break;
+
+        // 현재 구간 [i, j]는 
+        // point[i]를 시작점으로 하는
+        // 가장 짧은 구간이므로
+        // 구간 크기 중 최솟값을 갱신합니다.
+        ans = min(ans, point[j].first-point[i].first);
+        
+        // 다음 구간으로 넘어가기 전에
+        // point[i]에 해당하는 값은 point_count에서 지워줍니다.
+        point_count.erase(point_count.find({point[i].second, point[i].first}));
     }
 
-    if (ans == INT_MAX) cout << -1 << endl;
-    else cout << ans << endl;
-
+    // 만약 불가능하다면
+    // -1을 답으로 합니다.
+    if(ans == INT_MAX) cout << -1;
+    else cout << ans;
     return 0;
 }
-
-/*
-2 4  6 12
-4 10 3 15
-
-10 7 3 5 13 17 3 6 9
-
-*/
