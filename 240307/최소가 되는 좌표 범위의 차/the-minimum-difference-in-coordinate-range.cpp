@@ -16,7 +16,7 @@ struct Coord {
     bool operator<(const Coord& comp) const {
         return y < comp.y;
     }
-} arr[MAX_N];
+} arr[MAX_N + 1];
 
 struct Compare_x {
     bool operator()(const Coord& t, const Coord& v) const {
@@ -40,16 +40,16 @@ int main() {
     // freopen("input.txt", "r", stdin);
 
     cin >> N >> D;
-    for (int i = 0; i < N; i++) {
+    for (int i = 1; i <= N; i++) {
         cin >> arr[i].x >> arr[i].y;
     }
-    sort (arr, arr + N, Compare_x());
+    sort (arr + 1, arr + N + 1, Compare_x());
 
-    int j = -1;
+    int j = 0;
     int ans = INT_MAX;
 
-    for (int i = 0; i < N - 1; i++) {
-        while (j < N - 1 && get_max() - get_min() < D) {
+    for (int i = 1; i <= N; i++) {
+        while (j < N  && get_max() - get_min() < D) {
             j++;
             range.insert(arr[j]);
         }
