@@ -45,7 +45,7 @@ int main() {
     }
     sort (arr, arr + N, Compare_x());
 
-    int j = -1;
+    int j = 0;
     int ans = INT_MAX;
 
     for (int i = 0; i < N - 1; i++) {
