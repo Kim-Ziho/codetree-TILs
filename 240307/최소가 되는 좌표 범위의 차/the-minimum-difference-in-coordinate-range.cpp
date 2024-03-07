@@ -14,6 +14,9 @@ struct Coord {
     int y;
 
     bool operator<(const Coord& comp) const {
+        if (y == comp.y) {
+            return x < comp.x;
+        }
         return y < comp.y;
     }
 } arr[MAX_N];
@@ -55,11 +58,7 @@ int main() {
         }
         if (get_max() - get_min() < D) break;
         ans = min(ans, arr[j].x - arr[i].x);
-        auto iter = range.find(arr[i]);
-        if (iter == range.end()) {
-            continue;
-        }
-        range.erase(iter);
+        range.erase(range.find(arr[i]));
     }
 
     if (ans == INT_MAX) cout << -1 << endl;
