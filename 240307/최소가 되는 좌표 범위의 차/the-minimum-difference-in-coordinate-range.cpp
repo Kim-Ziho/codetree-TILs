@@ -45,11 +45,11 @@ int main() {
     }
     sort (arr, arr + N, Compare_x());
 
-    int j = 0;
+    int j = -1;
     int ans = INT_MAX;
 
     for (int i = 0; i < N - 1; i++) {
-        while (j < N && get_max() - get_min() < D) {
+        while (j < N - 1 && get_max() - get_min() < D) {
             j++;
             range.insert(arr[j]);
         }
