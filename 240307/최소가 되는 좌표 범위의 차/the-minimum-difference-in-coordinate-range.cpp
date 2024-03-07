@@ -48,7 +48,7 @@ int main() {
     int j = 0;
     int ans = INT_MAX;
 
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i < N; i++) {
         while (j < N  && get_max() - get_min() < D) {
             j++;
             range.insert(arr[j]);
