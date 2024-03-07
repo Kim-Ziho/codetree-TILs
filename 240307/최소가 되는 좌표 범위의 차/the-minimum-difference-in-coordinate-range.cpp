@@ -21,12 +21,6 @@ struct Coord {
     }
 } arr[MAX_N];
 
-struct Compare_x {
-    bool operator()(const Coord& t, const Coord& v) const {
-        return t.x < v.x;
-    }
-};
-
 set<Coord> range;
 
 int get_min() {
@@ -46,7 +40,9 @@ int main() {
     for (int i = 0; i < N; i++) {
         cin >> arr[i].x >> arr[i].y;
     }
-    sort (arr, arr + N, Compare_x());
+    sort (arr, arr + N, [](const Coord& t, const Coord& v) {
+        return t.x < v.x;
+    });
 
     int j = -1;
     int ans = INT_MAX;
