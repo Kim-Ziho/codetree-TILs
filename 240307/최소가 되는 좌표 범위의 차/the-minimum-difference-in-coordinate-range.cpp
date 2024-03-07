@@ -55,6 +55,10 @@ int main() {
         }
         if (get_max() - get_min() < D) break;
         ans = min(ans, arr[j].x - arr[i].x);
+        auto iter = range.find(arr[i]);
+        if (iter == range.end()) {
+            continue;
+        }
         range.erase(range.find(arr[i]));
     }
 
