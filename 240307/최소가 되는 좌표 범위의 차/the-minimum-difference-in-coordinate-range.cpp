@@ -59,7 +59,7 @@ int main() {
         if (iter == range.end()) {
             continue;
         }
-        range.erase(range.find(arr[i]));
+        range.erase(iter);
     }
 
     if (ans == INT_MAX) cout << -1 << endl;
