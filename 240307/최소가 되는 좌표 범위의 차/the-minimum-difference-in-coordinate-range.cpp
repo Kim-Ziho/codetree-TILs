@@ -20,6 +20,7 @@ struct Coord {
 
 struct Compare_x {
     bool operator()(const Coord& t, const Coord& v) const {
+        if (t.x == v.x) return t.y < v.y;
         return t.x < v.x;
     }
 };
