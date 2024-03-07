@@ -45,13 +45,13 @@ int main() {
     }
     sort (arr, arr + N, Compare_x());
 
-    int j = 0;
+    int j = -1;
     int ans = INT_MAX;
 
     for (int i = 0; i < N - 1; i++) {
         while (j < N && get_max() - get_min() < D) {
-            range.insert(arr[j]);
             j++;
+            range.insert(arr[j]);
         }
         if (get_max() - get_min() < D) break;
         ans = min(ans, arr[j].x - arr[i].x);
