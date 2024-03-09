@@ -16,14 +16,9 @@ int main() {
     }
     int ans = 0;
 
-    if (n == 1 && m == 1) {
-        cout << 1 << endl;
-        return 0;
-    }
-
     for (int y = 1; y <= n; y++) {
         int cnt = 0;
-        for (int x = 2; x <= n; x++) {
+        for (int x = 1; x <= n; x++) {
             if (arr[y][x] == arr[y][x - 1]) cnt++;
             else cnt = 0;
             if (cnt >= m - 1) {
@@ -34,7 +29,7 @@ int main() {
     }
     for (int x = 1; x <= n; x++) {
         int cnt = 0;
-        for (int y = 2; y <= n; y++) {
+        for (int y = 1; y <= n; y++) {
             if (arr[y][x] == arr[y - 1][x]) cnt++;
             else cnt = 0;
             if (cnt >= m - 1) {
