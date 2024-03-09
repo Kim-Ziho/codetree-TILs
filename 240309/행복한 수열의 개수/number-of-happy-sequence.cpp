@@ -16,6 +16,11 @@ int main() {
     }
     int ans = 0;
 
+    if (n == 1 && m == 1) {
+        cout << 1 << endl;
+        return 0;
+    }
+
     for (int y = 1; y <= n; y++) {
         int cnt = 0;
         for (int x = 2; x <= n; x++) {
