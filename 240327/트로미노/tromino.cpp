@@ -50,7 +50,6 @@ int main() {
 
     for (int y = 1; y <= N; y++) {
         for (int x = 1; x <= M; x++) {
-            bool out_range = false;
             for (int i = 0; i < 6; i++) {
                 int sum = 0;
                 bool is_out = false;
@@ -59,7 +58,7 @@ int main() {
                         if (mask[i][r][c] == 0) continue;
                         int py = y + r;
                         int px = x + c;
-                        if (py > N || px > N) is_out = true;
+                        if (py > N || px > M) is_out = true;
                         sum += arr[py][px];
                     }
                 }
