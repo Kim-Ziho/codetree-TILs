@@ -45,7 +45,7 @@ void right_wind(int row) {
     }
     arr[row][M] = tmp;
 
-    if (row + 1 < N && 
+    if (row + 1 <= N && 
         !is_moved[row + 1] && 
         can_spread(row, row + 1)) left_wind(row + 1);
     if (row - 1 > 0 && 
