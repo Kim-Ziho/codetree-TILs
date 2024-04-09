@@ -20,7 +20,7 @@ bool can_spread(int row, int tar) {
 }
 
 void left_wind(int row) {
-    is_moved[row] = 1;
+    is_moved[row] = true;
     int tmp = arr[row][M];
 
     for (int i = M; i > 1; i--) {
@@ -37,7 +37,7 @@ void left_wind(int row) {
 }
 
 void right_wind(int row) {
-    is_moved[row] = 1;
+    is_moved[row] = true;
     int tmp = arr[row][1];
 
     for (int i = 1; i < M; i++) {
@@ -66,7 +66,7 @@ int main() {
         cin >> row >> direct;
         
         for (int i = 1; i <= M; i++)
-            is_moved[i] = 0;
+            is_moved[i] = false;
 
         if (direct == "L") left_wind(row);
         else if (direct == "R") right_wind(row);
