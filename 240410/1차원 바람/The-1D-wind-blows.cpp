@@ -62,10 +62,11 @@ int main() {
     }
     for (int i = 0; i < Q; i++) {
         int row;
-        int dx;
-
         string direct;
         cin >> row >> direct;
+        
+        for (int i = 1; i <= M; i++)
+            is_moved[i] = 0;
 
         if (direct == "L") left_wind(row);
         else if (direct == "R") right_wind(row);
