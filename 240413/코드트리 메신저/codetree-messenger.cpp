@@ -5,7 +5,7 @@ using namespace std;
 
 int p[100001];
 int a[100001];
-int val[10001];
+int val[100001];
 bool is_off[100001];
 vector<vector<int>> num(100001, vector<int>(21));
 int n;
