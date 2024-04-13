@@ -32,7 +32,7 @@ void print_all() {
 }
 
 void print_num() {
-    for (int i = 1; i <= 9; i++) {
+    for (int i = 1; i <= 10; i++) {
         cout << i << " : ";
         for (int j = 0; j <= 5; j++) {
             cout << num[i][j] << ' ';
@@ -104,8 +104,8 @@ void change_power (int tar, int power) {
         num[parent][bef_power--]--;
         val[parent]--;
 
+        if (bef_power < 0 || is_off[parent]) break;
         parent = p[parent];
-        if (bef_power < 0) break;
     }
     a[tar] = power;
     parent = tar;
@@ -113,8 +113,8 @@ void change_power (int tar, int power) {
         num[parent][power--]++;
         val[parent]++;
 
+        if (power < 0 || is_off[parent]) break;
         parent = p[parent];
-        if (power < 0) break;
     }
 }
 
@@ -133,6 +133,7 @@ void search (int tar) {
 }
 
 int main() {
+    freopen("input.txt", "r", stdin);
     cin >> n >> q;
     
     for (int i = 0; i < q; i++) {
