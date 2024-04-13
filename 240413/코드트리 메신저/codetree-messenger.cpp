@@ -68,7 +68,7 @@ void turn_on (int tar) {
     while (parent) {
         for (int power = idx; power < 21; power++) {
             num[parent][power - idx] += num[tar][power];
-            if (power > idx) val[parent] += num[tar][power];
+            val[parent] += num[tar][power];
         }
         if (is_off[parent]) break;
         idx++;
@@ -82,7 +82,7 @@ void turn_off (int tar) {
     while (parent) {
         for (int power = idx; power < 21; power++) {
             num[parent][power - idx] -= num[tar][power];
-            if (power > idx) val[parent] -= num[tar][power];
+            val[parent] -= num[tar][power];
         }
         if (is_off[parent]) break;
         idx++;
@@ -98,6 +98,7 @@ void toggle (int tar) {
 }
 
 void change_power (int tar, int power) {
+    power = min(power, 20);
     int bef_power = a[tar];
     int parent = tar;
     while (parent) {
