@@ -133,7 +133,6 @@ void search (int tar) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
     cin >> n >> q;
     
     for (int i = 0; i < q; i++) {
