@@ -32,7 +32,7 @@ void print_all() {
 }
 
 void print_num() {
-    for (int i = 0; i <= 8; i++) {
+    for (int i = 1; i <= 9; i++) {
         cout << i << " : ";
         for (int j = 0; j <= 5; j++) {
             cout << num[i][j] << ' ';
@@ -99,20 +99,22 @@ void toggle (int tar) {
 
 void change_power (int tar, int power) {
     int bef_power = a[tar];
-    int parent = p[tar];
-    while (bef_power && parent) {
-        num[parent][--bef_power]--;
+    int parent = tar;
+    while (parent) {
+        num[parent][bef_power--]--;
         val[parent]--;
 
         parent = p[parent];
+        if (bef_power < 0) break;
     }
     a[tar] = power;
-    parent = p[tar];
-    while (power && parent) {
-        num[parent][--power]++;
+    parent = tar;
+    while (parent) {
+        num[parent][power--]++;
         val[parent]++;
 
         parent = p[parent];
+        if (power < 0) break;
     }
 }
 
